@@ -12,6 +12,21 @@ function compose(...fns) {
   return pipe(...fns.reverse())
 }
 
+
+function memoize(fn){
+  let val;
+  return function(...args){
+    if(!val){
+      val = fn(...args)
+    }
+    
+    return val
+  }
+}
+// const addOneTo = memoize((a) => a+1);
+// console.log(addOneTo(1))
+
+
 // const s = compose((a)=>a+1, (b)=>b+1);
 // console.log(s(0))
 
@@ -78,4 +93,6 @@ const isPalindrom = trampline(function isPalindrom(str){
 })
 
 // console.log(isPalindrom('aabbaa'))
+
+
 
