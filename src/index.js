@@ -1,3 +1,16 @@
+function getValue(byKey){
+  return (obj) => {
+    return obj[byKey]
+  }
+}
+const a = {
+  key: 'some'
+}
+
+// const getKey = pipe(getValue('key'))
+// console.log(getKey(a))
+
+
 function pipe(...fns){
   return function piped(arg){
     fns.forEach((f) => {
