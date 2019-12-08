@@ -40,8 +40,25 @@ function memoize(fn){
 // console.log(addOneTo(1))
 
 
-// const s = compose((a)=>a+1, (b)=>b+1);
-// console.log(s(0))
+function hasVoule(str){
+  return [...str].some(isVould)
+}
+function isLower(str){
+  return [...str].every((char) => char === char.toLowerCase())
+}
+function when(arg){
+  return function(...predicates){
+    const is = predicates.every(p => p(arg))
+    return function(callback){
+      if(is) callback(arg)
+    }
+  }
+}
+
+// when('some')(hasVoule, isLower)((arg) => {
+//   console.log(arg)
+// })
+
 
 // function isPalindrom(str){
 //   // compare first and last char
