@@ -1,3 +1,24 @@
+function reduce(callback, array, init) {
+  let currIdx;
+  let acc;
+
+  if(!init) {
+    currIdx = 1;
+    acc = array[0];
+  } else {
+    currIdx = 0;
+    acc = init;
+  }
+
+  for(let i = currIdx; i < array.length; ++i){
+    acc = callback(acc, array[i]);
+  }
+
+  return acc
+}
+
+// console.log(reduce((acc, curr) => acc + curr,[1,1,1,1]))
+
 function getValue(byKey){
   return (obj) => {
     return obj[byKey]
