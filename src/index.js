@@ -146,4 +146,40 @@ const isPalindrom = trampline(function isPalindrom(str){
 // console.log(isPalindrom('aabbaa'))
 
 
+function map(fn){
+  return function(array){
+    return array.map(fn)
+  }
+}
+
+function addOne(a){return a+1};
+function subOne(a){return a-1};
+
+function transduce (transducer, reducer,init,array) {
+  const a = transducer(array);
+  return a.reduce(reducer,init);
+}
+
+function into(transducer, init, array){
+  const a = transducer(array);
+  const sum = (acc, v) => acc + v;
+  const concat = (acc,v) => `${acc} ${v}`;
+  const merge = (acc, v) => [...acc, v];
+
+  const type = typeof init;
+  if(type === 'number'){
+    return a.reduce(sum,init)
+  };
+  if (type === 'string'){
+    return a.reduce(concat, init)
+  }
+
+  return a.reduce(merge,init)
+}
+
+
+const transducer = compose(map(addOne), map(subOne));
+
+// console.log(into(transducer, '',[1,1,1]))
+
 
