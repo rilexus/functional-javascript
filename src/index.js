@@ -178,8 +178,23 @@ function into(transducer, init, array){
 }
 
 
-const transducer = compose(map(addOne), map(subOne));
+// const transducer = compose(map(addOne), map(subOne));
 
 // console.log(into(transducer, '',[1,1,1]))
 
+
+function curry(timesToCurry,fn){
+  const argsCache = [];
+  
+  function curried (arg){
+    argsCache.push(arg);
+    --timesToCurry;
+    if(timesToCurry === 0){
+      return fn(...argsCache)
+    }
+    return curried
+  }
+
+  return curried
+}
 
